@@ -15,13 +15,14 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
-public class MainLayout extends AppLayout {
+public class MainLayout extends AppLayout  {
 
     /**
      * A simple navigation item component, based on ListItem element.
@@ -66,12 +67,15 @@ public class MainLayout extends AppLayout {
     private H1 viewTitle;
 
     public MainLayout() {
-        setPrimarySection(Section.DRAWER);
+        //setPrimarySection(Section.DRAWER);
         addToNavbar(true, createHeaderContent());
         addToDrawer(createDrawerContent());
     }
 
     private Component createHeaderContent() {
+        HorizontalLayout layout = new HorizontalLayout();
+
+
         DrawerToggle toggle = new DrawerToggle();
         toggle.addClassNames("view-toggle");
         toggle.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
@@ -82,7 +86,7 @@ public class MainLayout extends AppLayout {
 
         Header header = new Header(toggle, viewTitle);
         header.addClassNames("view-header");
-        return header;
+        return layout;
     }
 
     private Component createDrawerContent() {
@@ -115,7 +119,6 @@ public class MainLayout extends AppLayout {
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
-
         };
     }
 
